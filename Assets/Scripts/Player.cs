@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     int _maxHp = 3;
     int _score;
     public float speed;
-    float _maxSpeed = 2.5f;
+    float _maxSpeed = 4f;
 
     private void OnTriggerEnter(Collider other)
     {
