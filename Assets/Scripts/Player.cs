@@ -3,25 +3,44 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    int _hp;
-    int _maxHp = 3;
-    int _score;
-    public float speed;
-    float _maxSpeed = 4f;
+    int _hp; // Здоровье игрока
+    int _maxHp = 3; // Максимальное здоровье игрока
+    int _score; // Очки игрока
+    float _speed; // Скорость игрока
+    float _maxSpeed = 4f; // Максимальная скорость игрока
 
+    private void Start()
+    {
+        _speed = 2f;
+    }
+
+    // Проверка какой коллайдер задел игрок
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Health") && _hp < _maxHp)
+        string tag = other.tag;
+        switch (tag)
         {
-            _hp++;
+            case "Health":
+                _hp++;
+                break;
+            case "Key":
+                _score++;
+                break;
+            case "BoostSpeed":
+                _speed += 2f;
+                break;
+            default:
+                break;
         }
-        else if (other.CompareTag("Key"))
-        {
-            _score++;
-        }
-        else if (other.CompareTag("BoostSpeed") && speed < _maxSpeed)
-        {
-            speed += 2f;
-        }
+    }
+
+    public void Move(Rigidbody2D rb)
+    {
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
+
+        Vector2 movement = new Vector2(moveX, moveY) * _speed;
+
+        rb.linearVelocity = movement;
     }
 }

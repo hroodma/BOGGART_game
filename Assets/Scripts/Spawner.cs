@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public EnemyController enemyController; // Ссылка на EnemyController
     public List<GameObject> prefabs; // Префабы для спавна
     public List<Transform> SpawnPointsItem; // Точки спавна предметов (не используются здесь)
     public Transform SpawnPointPlayer; // Точка спавна игрока
     public List<Transform> spawnPointsEnemy; // Точки спавна врагов
-    public List<Transform> waypoints;
+    public List<Transform> waypoints; // Конечные точки движения врага
 
     void Start()
     {

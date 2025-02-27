@@ -4,9 +4,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public Player player;
+    public Player player; // —сылка на класс Player
 
-    private Rigidbody2D rb;
+    private Rigidbody2D rb; // —сылка на Rigidbody2D
 
     void Start()
     {
@@ -15,11 +15,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
-
-        Vector2 movement = new Vector2(moveX, moveY) * player.speed;
-
-        rb.linearVelocity = movement;
+        player.Move(rb);
+        
     }
 }
