@@ -3,21 +3,24 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    int _hp; // Здоровье игрока
-    int _maxHp = 3; // Максимальное здоровье игрока
+    [SerializeField]int _hp; // Здоровье игрока
+    int _maxHp; // Максимальное здоровье игрока
     int _score; // Очки игрока
     float _speed; // Скорость игрока
-    float _maxSpeed = 4f; // Максимальная скорость игрока
+    float _maxSpeed; // Максимальная скорость игрока
 
     private void Start()
     {
-        _speed = 2f;
+        _maxHp = 3; // Установка максимального здоровья
+        _hp = _maxHp; // Установка здоровья
+        _maxSpeed = 4f; // Установка максимальной скорости
+        _speed = _maxSpeed; // Установка скорости
     }
 
     // Проверка какой коллайдер задел игрок
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        string tag = other.tag;
+        string tag = collision.tag; // Получаем тэг объекта, с которым столкнулись
         switch (tag)
         {
             case "Health":
@@ -34,6 +37,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Движение игрока
     public void Move(Rigidbody2D rb)
     {
         float moveX = Input.GetAxis("Horizontal");
@@ -42,5 +46,18 @@ public class Player : MonoBehaviour
         Vector2 movement = new Vector2(moveX, moveY) * _speed;
 
         rb.linearVelocity = movement;
+    }
+
+    // Получение урона
+    public void TakeDamage(int damage)
+    {
+        if(_hp >= damage)
+        {
+            _hp -= damage;
+        }
+        else
+        {
+            // Перезагрузка уровня
+        }
     }
 }

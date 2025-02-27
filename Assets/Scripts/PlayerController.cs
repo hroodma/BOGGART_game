@@ -16,6 +16,5 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         player.Move(rb);
-        
     }
 }

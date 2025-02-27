@@ -5,13 +5,16 @@ public class Enemy : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float speed = 2f; // Скорость движения
-    Transform A;
-    Transform B;
-    Transform targetWaypoint;
+    Transform A; // Начальная точка
+    Transform B; // Конечная точка
+    Transform targetWaypoint; // Целевая точка
     private float t = 0f; // Параметр интерполяции
+
+    int _damage; // Урон
 
     private void Start()
     {
+        _damage = 1;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -49,5 +52,17 @@ public class Enemy : MonoBehaviour
         A = spawnpoint;
         B = waypoint;
         targetWaypoint = B;
+    }
+
+    // Проверка столкновений
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Проверка на столкновение с игроком
+        if (collision.CompareTag("Player"))
+        {
+            Player player = collision.GetComponent<Player>();
+
+            player.TakeDamage(_damage);
+        }
     }
 }
