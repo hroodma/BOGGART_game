@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
         _hp = _maxHp; // Установка здоровья
         _maxSpeed = 4f; // Установка максимальной скорости
         _speed = _maxSpeed; // Установка скорости
+        _score = 0; // Установка очков
     }
 
     // Проверка какой коллайдер задел игрок
@@ -51,13 +53,14 @@ public class Player : MonoBehaviour
     // Получение урона
     public void TakeDamage(int damage)
     {
-        if(_hp >= damage)
+        if(_hp > damage)
         {
             _hp -= damage;
         }
         else
         {
             // Перезагрузка уровня
+            SceneManager.LoadScene(1);
         }
     }
 }
