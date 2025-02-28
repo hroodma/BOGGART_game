@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Enemy : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public float speed = 2f; // Скорость движения
+    private float _speed; // Скорость движения
     Transform A; // Начальная точка
     Transform B; // Конечная точка
     Transform targetWaypoint; // Целевая точка
@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        _speed = 0.5f;
         _damage = 1;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -26,7 +27,7 @@ public class Enemy : MonoBehaviour
     void MoveBetweenWaypoints()
     {
         // Плавно увеличиваем параметр t от 0 до 1
-        t += speed * Time.deltaTime;
+        t += _speed * Time.deltaTime;
 
         // Используем Lerp для плавного перемещения между A и B
         transform.position = Vector3.Lerp(A.position, B.position, Mathf.PingPong(t, 1f));

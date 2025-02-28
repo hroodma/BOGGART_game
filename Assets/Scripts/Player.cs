@@ -6,9 +6,10 @@ public class Player : MonoBehaviour
 
     [SerializeField]int _hp; // Здоровье игрока
     int _maxHp; // Максимальное здоровье игрока
-    int _score; // Очки игрока
+    [SerializeField]int _score; // Очки игрока
     float _speed; // Скорость игрока
     float _maxSpeed; // Максимальная скорость игрока
+    float _minSpeed; // Минимальная скорость игрока
 
     private void Start()
     {
@@ -17,26 +18,6 @@ public class Player : MonoBehaviour
         _maxSpeed = 4f; // Установка максимальной скорости
         _speed = _maxSpeed; // Установка скорости
         _score = 0; // Установка очков
-    }
-
-    // Проверка какой коллайдер задел игрок
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        string tag = collision.tag; // Получаем тэг объекта, с которым столкнулись
-        switch (tag)
-        {
-            case "Health":
-                _hp++;
-                break;
-            case "Key":
-                _score++;
-                break;
-            case "BoostSpeed":
-                _speed += 2f;
-                break;
-            default:
-                break;
-        }
     }
 
     // Движение игрока
@@ -61,6 +42,29 @@ public class Player : MonoBehaviour
         {
             // Перезагрузка уровня
             SceneManager.LoadScene(1);
+        }
+    }
+
+    // Получение бонуса
+    public void TakeBonus(string bonus, int point)
+    {
+        switch (bonus)
+        {
+            case "Health":
+                if(_hp < _maxHp)
+                {
+                    _hp += point;
+                }
+                break;
+            case "BoostSpeed":
+                if (_speed == _minSpeed)
+                {
+                    _speed += point;
+                }
+                break;
+            case "Key":
+                _score += point;
+                break;
         }
     }
 }
