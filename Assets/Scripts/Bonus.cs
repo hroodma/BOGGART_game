@@ -4,7 +4,6 @@ using UnityEngine;
 public abstract class Bonus : MonoBehaviour
 {
     public Spawner spawner; // Ссылка на Spawner
-    public int index;    // Индекс занятой точки спавна
     protected string _nameBonus;
     protected int _pointBonus;
 
@@ -25,39 +24,12 @@ public abstract class Bonus : MonoBehaviour
         }
     }
 
+    // Респавн бустов
     void Respawn()
     {
-        //// Освобождаем текущую точку спавна
-        //if (busyIndex >= 0 && busyIndex < spawner.spawnPointsBonus.Count)
-        //{
-        //    spawner.busySpawnPointsBonus.Remove(spawner.spawnPointsBonus[busyIndex]);
-        //}
-
-        //// Ищем новую свободную точку
-        //List<Transform> freeSpawnPoints = new List<Transform>();
-        //foreach (Transform point in spawner.spawnPointsBonus)
-        //{
-        //    if (!spawner.busySpawnPointsBonus.Contains(point))
-        //    {
-        //        freeSpawnPoints.Add(point);
-        //    }
-        //}
-
-        //if (freeSpawnPoints.Count > 0)
-        //{
-        //    // Выбираем случайную свободную точку
-        //    int randomIndex = Random.Range(0, freeSpawnPoints.Count);
-        //    Transform newSpawnPoint = freeSpawnPoints[randomIndex];
-
-        //    // Перемещаем бонус на новую точку
-        //    transform.position = newSpawnPoint.position;
-
-        //    // Обновляем busySpawnPointsBonus
-        //    spawner.busySpawnPointsBonus.Add(newSpawnPoint);
-        //    busyIndex = spawner.spawnPointsBonus.IndexOf(newSpawnPoint);
-        //}
-
         int random = Random.Range(0, spawner.spawnPointsBonus.Count);
+
+        // Проверка на занятость точки
         if (!spawner.busySpawnPointsBonus.Contains(spawner.spawnPointsBonus[random]))
         {
             Transform newPos = spawner.spawnPointsBonus[random];
