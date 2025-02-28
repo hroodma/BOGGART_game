@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -58,16 +60,21 @@ public class Player : MonoBehaviour
                 }
                 break;
             case "BoostSpeed":
-                Debug.Log("Игрок собрал скорость!");
-                if (_speed == _minSpeed)
+                if (_speed == _minSpeed && _speed <= _maxSpeed)
                 {
-                    Debug.Log("Игроку должна начислиться скорость!");
-                    _speed += point;
+                    StartCoroutine(BoostSpeed(point));
                 }
                 break;
             case "Key":
                 _score += point;
                 break;
         }
+    }
+
+    IEnumerator BoostSpeed(int point)
+    {
+        _speed += point;
+        yield return new WaitForSeconds(5f);
+        _speed = _minSpeed;
     }
 }
