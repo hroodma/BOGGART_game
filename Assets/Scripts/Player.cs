@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField]int _hp; // Здоровье игрока
     int _maxHp; // Максимальное здоровье игрока
     [SerializeField]int _score; // Очки игрока
-    float _speed; // Скорость игрока
+    [SerializeField]float _speed; // Скорость игрока
     float _maxSpeed; // Максимальная скорость игрока
     float _minSpeed; // Минимальная скорость игрока
 
@@ -16,7 +16,8 @@ public class Player : MonoBehaviour
         _maxHp = 3; // Установка максимального здоровья
         _hp = _maxHp; // Установка здоровья
         _maxSpeed = 4f; // Установка максимальной скорости
-        _speed = _maxSpeed; // Установка скорости
+        _minSpeed = 2f; // Установка минимальной скорости
+        _speed = _minSpeed; // Установка скорости
         _score = 0; // Установка очков
     }
 
@@ -57,8 +58,10 @@ public class Player : MonoBehaviour
                 }
                 break;
             case "BoostSpeed":
+                Debug.Log("Игрок собрал скорость!");
                 if (_speed == _minSpeed)
                 {
+                    Debug.Log("Игроку должна начислиться скорость!");
                     _speed += point;
                 }
                 break;
