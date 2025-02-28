@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public List<GameObject> prefabs; // Префабы для спавна
+    public List<GameObject> entitiesPrefabs; // Префабы для спавна игрока и врагов
+    public List<GameObject> bonusesPrefabs; // Префабы для спавна бонусов
     public Transform spawnPointPlayer; // Точка спавна игрока
     public List<Transform> spawnPointsEnemy; // Точки спавна врагов
     public List<Transform> waypoints; // Конечные точки движения врага
@@ -21,7 +22,7 @@ public class Spawner : MonoBehaviour
     void PlayerSpawn()
     {
         // Спавним игрока
-        Instantiate(prefabs[0], spawnPointPlayer.position, spawnPointPlayer.rotation);
+        Instantiate(entitiesPrefabs[0], spawnPointPlayer.position, spawnPointPlayer.rotation);
     }
 
     // Спавнер врагов
@@ -30,7 +31,7 @@ public class Spawner : MonoBehaviour
         // Спавним врагов
         for (int i = 0; i < spawnPointsEnemy.Count; i++)
         {
-            GameObject enemy = Instantiate(prefabs[1], spawnPointsEnemy[i].position, spawnPointsEnemy[i].rotation);
+            GameObject enemy = Instantiate(entitiesPrefabs[1], spawnPointsEnemy[i].position, spawnPointsEnemy[i].rotation);
             Enemy enemyScript = enemy.GetComponent<Enemy>();
 
             // Назначаем уникальные точки движения для этого врага
@@ -40,11 +41,12 @@ public class Spawner : MonoBehaviour
             }
         }
     }
-     // Спавнер бонусов
+
+    // Спавнер бонусов
     void BonusSpawn()
     {
-        //Спавним бонусы
-        for (int i = 2; i < prefabs.Count; i++)
+        // Спавним бонусы
+        for (int i = 0; i < bonusesPrefabs.Count; i++)
         {
             int random = Random.Range(0, spawnPointsBonus.Count);
 
@@ -55,8 +57,16 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-                GameObject bonus = Instantiate(prefabs[i], spawnPointsBonus[random].position, spawnPointsBonus[random].rotation);
+                GameObject bonus = Instantiate(bonusesPrefabs[i], spawnPointsBonus[random].position, spawnPointsBonus[random].rotation);
                 busySpawnPointsBonus.Add(spawnPointsBonus[random]);
+
+                Bonus bonusScript = bonus.GetComponent<Bonus>();
+                if (bonusScript != null)
+                {
+                    bonusScript.index = i;
+                    bonusScript.spawner = this; // Передаем ссылку на Spawner
+                    bonusScript.currentPos = spawnPointsBonus[random];
+                }
             }
         }
     }
