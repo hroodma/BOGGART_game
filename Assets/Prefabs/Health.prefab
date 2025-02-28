@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2079953274828032264}
   - component: {fileID: 5853716531030040399}
   - component: {fileID: 5542737511449758144}
+  - component: {fileID: -4841511568214233096}
   m_Layer: 0
   m_Name: Health
   m_TagString: Health
@@ -134,3 +135,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5.12, y: 4.5}
   m_EdgeRadius: 0
+--- !u!114 &-4841511568214233096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6095421450196169712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e44e1d01453074d99018cbbd2ef0b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
