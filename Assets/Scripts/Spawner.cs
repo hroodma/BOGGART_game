@@ -63,7 +63,6 @@ public class Spawner : MonoBehaviour
                 Bonus bonusScript = bonus.GetComponent<Bonus>();
                 if (bonusScript != null)
                 {
-                    bonusScript.index = i;
                     bonusScript.spawner = this; // Передаем ссылку на Spawner
                     bonusScript.currentPos = spawnPointsBonus[random];
                 }
