@@ -1,10 +1,29 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
+    public Button startButton;  // Кнопка старта игры
+    public Button settingsButton; // Кнопка настроек игры
+    public Button exitButton; // Кнопка выхода из игры
 
-    public GameObject panel;
+    public Button keyboardButton; // Кнопка управления клавиатурой
+    public Button joystickButton; // Кнопка управление джойстиком
+    public Button gyroscopeButton; // Кнопка управления гироскопом
+
+    public GameObject panel; // Панель с кнопками выбора управления
+
+    void Start()
+    {
+        startButton.onClick.AddListener(() => StartGame());
+        settingsButton.onClick.AddListener(() => SettingsOpen());
+        exitButton.onClick.AddListener(() => Exit());
+        keyboardButton.onClick.AddListener(() => SetControlMode("keyboard"));
+        joystickButton.onClick.AddListener(() => SetControlMode("joystick"));
+        gyroscopeButton.onClick.AddListener(() => SetControlMode("gyroscope"));
+    }
 
     public void StartGame()
     {
@@ -21,9 +40,9 @@ public class ButtonController : MonoBehaviour
         Application.Quit();
     }
 
-    public void ChangeController()
+    void SetControlMode(string mode)
     {
-        // Выбранное управление
+        GameSettings.ControlMode = mode;
         panel.SetActive(false);
     }
 }

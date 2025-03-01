@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     }
 
     // Движение игрока
-    public void Move(Rigidbody2D rb)
+    public void MoveKeyboard(Rigidbody2D rb)
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
