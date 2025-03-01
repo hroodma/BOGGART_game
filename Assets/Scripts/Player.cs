@@ -45,6 +45,17 @@ public class Player : MonoBehaviour
         rb.linearVelocity = movement;
     }
 
+    // Движение игрока при помощи гироскопа
+    public void MoveGyroscope(Rigidbody2D rb)
+    {
+        float moveX = Input.acceleration.x;
+        float moveY = Input.acceleration.y;
+
+        Vector2 movement = new Vector2(moveX, moveY) * _speed;
+
+        rb.linearVelocity = movement;
+    }
+
     // Получение урона
     public void TakeDamage(int damage)
     {

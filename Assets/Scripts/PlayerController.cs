@@ -32,8 +32,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case "gyroscope":
-                Debug.Log("Игра запущена с управлением: гироскоп");
-                // Настройка управления гироскопом
+                player.MoveGyroscope(_rb);
                 break;
 
             default:

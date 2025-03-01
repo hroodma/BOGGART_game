@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      face-angry-svgrepo-com (1)_0: 6129128952128544589
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

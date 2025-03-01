@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      heart-svgrepo-com (1)_0: 1840741678432731252
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

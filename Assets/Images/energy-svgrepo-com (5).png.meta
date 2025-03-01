@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      energy-svgrepo-com (5)_0: 6205533051057169975
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
