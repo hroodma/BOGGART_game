@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             default:
-                Debug.Log("Режим управления не выбран, используется клавиатура");
+                player.MoveKeyboard(_rb);
                 break;
         }
     }

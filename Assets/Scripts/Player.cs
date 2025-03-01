@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +15,9 @@ public class Player : MonoBehaviour
     float _maxSpeed; // Максимальная скорость игрока
     float _minSpeed; // Минимальная скорость игрока
 
+    private Text scoreText;
+    private Text hpText;
+
     private void Start()
     {
         _maxHp = 3; // Установка максимального здоровья
@@ -21,6 +26,12 @@ public class Player : MonoBehaviour
         _minSpeed = 2f; // Установка минимальной скорости
         _speed = _minSpeed; // Установка скорости
         _score = 0; // Установка очков
+
+        scoreText = GameObject.Find("CountScore").GetComponent<Text>();
+        hpText = GameObject.Find("CountHp").GetComponent<Text>();
+
+        scoreText.text = _score.ToString();
+        hpText.text = $"x{_hp}";
     }
 
     // Движение игрока при помощи клавиатуры
@@ -62,6 +73,7 @@ public class Player : MonoBehaviour
         if(_hp > damage)
         {
             _hp -= damage;
+            hpText.text = $"x{_hp}";
         }
         else
         {
@@ -79,6 +91,7 @@ public class Player : MonoBehaviour
                 if(_hp < _maxHp)
                 {
                     _hp += point;
+                    hpText.text = $"x{_hp}";
                 }
                 break;
 
@@ -91,6 +104,7 @@ public class Player : MonoBehaviour
 
             case "Key":
                 _score += point;
+                scoreText.text = _score.ToString();
                 break;
         }
     }
