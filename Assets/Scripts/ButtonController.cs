@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
-    public static ButtonController Instance { get; private set; }
+    public static ButtonController Instance;
 
     public Button startButton;  //  нопка старта игры
     public Button settingsButton; //  нопка настроек игры
@@ -29,6 +29,11 @@ public class ButtonController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        panel.SetActive(false);
     }
 
     private void OnEnable()
@@ -57,13 +62,26 @@ public class ButtonController : MonoBehaviour
         menuButton = GameObject.Find("MenuButton")?.GetComponent<Button>();
         panel = GameObject.Find("SettingsPanel");
 
-        startButton.onClick.AddListener(() => StartGame());
-        settingsButton.onClick.AddListener(() => SettingsOpen());
-        exitButton.onClick.AddListener(() => Exit());
-        keyboardButton.onClick.AddListener(() => SetControlMode("keyboard"));
-        joystickButton.onClick.AddListener(() => SetControlMode("joystick"));
-        gyroscopeButton.onClick.AddListener(() => SetControlMode("gyroscope"));
-        menuButton.onClick.AddListener(() => OpenMenu());
+        if (startButton != null)
+            startButton.onClick.AddListener(() => StartGame());
+
+        if (settingsButton != null)
+            settingsButton.onClick.AddListener(() => SettingsOpen());
+
+        if (exitButton != null)
+            exitButton.onClick.AddListener(() => Exit());
+
+        if (keyboardButton != null)
+            keyboardButton.onClick.AddListener(() => SetControlMode("keyboard"));
+
+        if (joystickButton != null)
+            joystickButton.onClick.AddListener(() => SetControlMode("joystick"));
+
+        if (gyroscopeButton != null)
+            gyroscopeButton.onClick.AddListener(() => SetControlMode("gyroscope"));
+
+        if (menuButton != null)
+            menuButton.onClick.AddListener(() => OpenMenu());
     }
 
     public void StartGame()
