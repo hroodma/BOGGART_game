@@ -23,11 +23,22 @@ public class Player : MonoBehaviour
         _score = 0; // Установка очков
     }
 
-    // Движение игрока
+    // Движение игрока при помощи клавиатуры
     public void MoveKeyboard(Rigidbody2D rb)
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
+
+        Vector2 movement = new Vector2(moveX, moveY) * _speed;
+
+        rb.linearVelocity = movement;
+    }
+
+    // Движение игрока при помощи джойстика
+    public void MoveJoystick(Rigidbody2D rb, FixedJoystick joystick)
+    {
+        float moveX = joystick.Horizontal;
+        float moveY = joystick.Vertical;
 
         Vector2 movement = new Vector2(moveX, moveY) * _speed;
 
@@ -59,12 +70,14 @@ public class Player : MonoBehaviour
                     _hp += point;
                 }
                 break;
+
             case "BoostSpeed":
                 if (_speed == _minSpeed && _speed <= _maxSpeed)
                 {
                     StartCoroutine(BoostSpeed(point));
                 }
                 break;
+
             case "Key":
                 _score += point;
                 break;

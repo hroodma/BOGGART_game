@@ -166,7 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3afbf57ad36ab04b95dd46a52e9340c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  _hp: 0
+  _score: 0
+  _speed: 0
 --- !u!114 &-1338535224445568473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,3 +182,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5216757631365504332}
+  _fixedJoystick: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}

@@ -1,19 +1,22 @@
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
 
     public Player player; // Ссылка на класс Player
 
-    private Rigidbody2D rb; // Ссылка на Rigidbody2D
+    private Rigidbody2D _rb; // Ссылка на Rigidbody2D
+    private FixedJoystick _fixedJoystick;
 
-    string controlMode;
+    string controlMode; // Режим управления
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
         controlMode = GameSettings.ControlMode;
+        _fixedJoystick = GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
     }
 
     void Update()
@@ -21,12 +24,11 @@ public class PlayerController : MonoBehaviour
         switch (controlMode)
         {
             case "keyboard":
-                player.MoveKeyboard(rb);
+                player.MoveKeyboard(_rb);
                 break;
 
             case "joystick":
-                Debug.Log("Игра запущена с управлением: джойстик");
-                // Настройка управления джойстиком
+                player.MoveJoystick(_rb, _fixedJoystick);
                 break;
 
             case "gyroscope":
